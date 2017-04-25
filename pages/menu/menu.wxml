@@ -1,4 +1,9 @@
-<view>
-  <include src="../../templates/header.wxml" />
-  <button bindtap="showTip"> showTip </button>
+
+<view class="menu_layout">
+  <text selectable="true">每周50个单词记忆挑战</text>
+  <button bindtap="startChange">开始</button>
+</view>
+<view class="menu_layout">
+  <text selectable="true">历史成绩</text>
+  <button bindtap="check">查看</button>
 </view>

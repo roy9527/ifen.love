@@ -5,13 +5,17 @@ Page({
   data: {
     motto: '「专心做重要的小事」',
     userInfo: {
-      nickName:'welcome'
     }
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
       // url: '../logs/logs?id=1&nidaye=2'
+      url: '../one_word/one_word'
+    })
+  },
+  openMenu: function() {
+    wx.navigateTo({
       url: '../menu/menu'
     })
   },

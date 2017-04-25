@@ -8,22 +8,21 @@ Page({
         })
     },
     data: {
-        // userInfo: {nickName : }
-        // userInfo: app.globalData.userInfo
+
     },
 
-    showTip: function (e) {
-        console.log(e)
-        wx.showModal({
-            title: '提示',
-            content: '这是一个模态弹窗',
-            success: function (res) {
-                if (res.confirm) {
-                    console.log('用户点击确定')
-                } else if (res.cancel) {
-                    console.log('用户点击取消')
-                }
-            }
+    startChange: function () {
+        wx.navigateTo({
+          url: '../one_word/one_word',
+          success: function(res){
+            // success
+          },
+          fail: function(res) {
+            // fail
+          },
+          complete: function(res) {
+            // complete
+          }
         })
     }
 })

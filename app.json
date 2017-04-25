@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/menu/menu"
+    "pages/menu/menu",
+    "pages/one_word/one_word"
   ],
   "window":{
     "backgroundTextStyle":"light",
