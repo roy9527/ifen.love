@@ -1,0 +1,4 @@
+<view>
+  <include src="../../templates/header.wxml" />
+  <button bindtap="showTip"> showTip </button>
+</view>
