@@ -4,7 +4,7 @@
   </view>
   <view class="mean_layout" hidden="{{hideMeans}}">
     <view wx:for="{{fuzzy_mean}}">
-      <button> {{item}}</button>
+      <button id="{{index}}" bindtap="selectWord"> {{item}}</button>
     </view>
   </view>
   <view class="operate_layout">

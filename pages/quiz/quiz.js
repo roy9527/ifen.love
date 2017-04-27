@@ -3,7 +3,6 @@ var app = getApp()
 function parserData(page) {
     var data = page.data.quiz
     var index = page.data.current_index
-    console.log(data)
 
     var l = data.words_list
     var current_word_ = l[index]
@@ -22,7 +21,6 @@ function parserData(page) {
     var t = fuzzy[r]
     fuzzy[r] = fuzzy[3]
     fuzzy[3] = t
-    console.log(fuzzy)
 
     page.setData({
         hideQuiz: false,
@@ -31,7 +29,20 @@ function parserData(page) {
         fuzzy_mean: fuzzy,
         current_word: current_word_,
         current_index: index,
+        right_index: r,
     })
+}
+
+function nextWord_(page, complete) {
+    page.data.current_index += 1
+    if (page.data.current_index >= page.data.words_size) {
+        //TODO submit score
+        if (complete) {
+            complete()
+        }
+    } else {
+        parserData(page)
+    }
 }
 
 Page({
@@ -42,6 +53,9 @@ Page({
             userInfo: app.globalData.userInfo
         })
         wx.showNavigationBarLoading()
+        wx.showLoading({
+            title: '测验准备中...',
+        })
         wx.setNavigationBarTitle({
             title: '准备开始'
         })
@@ -53,6 +67,7 @@ Page({
             },
             success: function (res) {
                 wx.hideNavigationBarLoading()
+                wx.hideLoading()
                 wx.setNavigationBarTitle({
                     title: '测验'
                 })
@@ -67,6 +82,11 @@ Page({
             },
             fail: function (res) {
                 wx.hideNavigationBarLoading()
+                wx.hideLoading()
+                wx.showToast({
+                    title: '出错啦，请重试',
+                    icon: 'loading',
+                })
             },
         })
     },
@@ -79,6 +99,7 @@ Page({
         quiz: null,
         current_index: 0,
         current_word: null,
+        right_index: -1,
         fuzzy_mean: [],
         words_size: -1,
         hideMeans: true,
@@ -86,6 +107,13 @@ Page({
         hideQuiz: true,
     },
 
+    selectWord: function (event) {
+        console.log(event.target.id)
+        console.log(this.data.current_word)
+        nextWord_(this, function c_() {
+            console.log('ok complete!')
+        })
+    },
     showMeans: function () {
         this.setData({
             hideMeans: false,
@@ -94,12 +122,9 @@ Page({
     },
 
     nextWord: function () {
-        this.data.current_index += 1
-        if (this.data.current_index >= this.data.words_size) {
-            //TODO submit score
+        nextWord_(this, function c_() {
             console.log('ok complete!')
-        } else {
-            parserData(this)
-        }
-    }
+        })
+    },
+
 })
