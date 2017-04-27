@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/menu/menu",
-    "pages/one_word/one_word"
+    "pages/quiz/quiz"
   ],
   "window":{
     "backgroundTextStyle":"light",

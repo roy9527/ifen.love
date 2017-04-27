@@ -10,13 +10,14 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      // url: '../logs/logs?id=1&nidaye=2'
-      url: '../one_word/one_word'
+      url: '../logs/logs?id=1&nidaye=2'
+      // url: '../one_word/one_word'
     })
   },
   openMenu: function() {
     wx.navigateTo({
       url: '../menu/menu'
+      // url: '../logs/logs?id=1&nidaye=2'
     })
   },
   onLoad: function (options) {

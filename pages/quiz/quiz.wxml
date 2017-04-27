@@ -1,0 +1,14 @@
+<view class="quiz_layout" hidden="{{hideQuiz}}">
+  <view class="word_layout">
+    <text selectable="true">{{current_word.name}}</text>
+  </view>
+  <view class="mean_layout" hidden="{{hideMeans}}">
+    <view wx:for="{{fuzzy_mean}}">
+      <button> {{item.mean}}</button>
+    </view>
+  </view>
+  <view class="operate_layout">
+    <button bindtap="showMeans" wx:if="{{hideMeans}}">I Konw</button>
+    <button bindtap="nextWord">Sorry Next</button>
+  </view>
+</view>
