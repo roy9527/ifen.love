@@ -4,7 +4,7 @@ function parserData(page) {
     var data = page.data.quiz
     var index = page.data.current_index
     console.log(data)
-    
+
     var l = data.words_list
     var current_word_ = l[index]
     var fuzzy = []
@@ -23,11 +23,14 @@ function parserData(page) {
     fuzzy[r] = fuzzy[3]
     fuzzy[3] = t
     console.log(fuzzy)
+
     page.setData({
-        current_index: index,
+        hideQuiz: false,
+        hideMeansBtn: false,
+        hideMeans: true,
         fuzzy_mean: fuzzy,
         current_word: current_word_,
-        hideQuiz: false
+        current_index: index,
     })
 }
 
@@ -52,15 +55,15 @@ Page({
                 wx.hideNavigationBarLoading()
                 wx.setNavigationBarTitle({
                     title: '测验'
-                }) 
+                })
                 if (res.data) {
                     that.data.quiz = res.data
                     that.data.words_size = res.data.words_list.length
                     parserData(that)
+                    that.setData({})
                 } else {
                     //TODO
                 }
-
             },
             fail: function (res) {
                 wx.hideNavigationBarLoading()
@@ -79,22 +82,23 @@ Page({
         fuzzy_mean: [],
         words_size: -1,
         hideMeans: true,
+        hideMeansBtn: false,
         hideQuiz: true,
     },
 
     showMeans: function () {
-        var hide = this.data.hideMeans
         this.setData({
-            hideMeans: !hide
+            hideMeans: false,
+            hideMeansBtn: true,
         })
     },
 
     nextWord: function () {
         this.data.current_index += 1
-        if(this.data.current_index >= this.data.words_size) {
+        if (this.data.current_index >= this.data.words_size) {
             //TODO submit score
             console.log('ok complete!')
-        }else {
+        } else {
             parserData(this)
         }
     }

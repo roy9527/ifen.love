@@ -4,11 +4,11 @@
   </view>
   <view class="mean_layout" hidden="{{hideMeans}}">
     <view wx:for="{{fuzzy_mean}}">
-      <button> {{item.mean}}</button>
+      <button> {{item}}</button>
     </view>
   </view>
   <view class="operate_layout">
-    <button bindtap="showMeans" wx:if="{{hideMeans}}">I Konw</button>
-    <button bindtap="nextWord">Sorry Next</button>
+    <button bindtap="showMeans" hidden="{{hideMeansBtn}}">I Konw</button>
+    <button bindtap="nextWord" hidden="{{hideMeansBtn}}">Sorry Next</button>
   </view>
 </view>
